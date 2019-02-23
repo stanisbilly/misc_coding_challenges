@@ -55,6 +55,12 @@ from enum import Enum
 
 TRAVERSE_MODE = Enum('TRAVERSE_MODE', 'DFS BFS')
 
+'''
+Note:  This solution assumes that the input is a balanced binary tree,
+in which a node either has both children, or in the case of leaf nodes,
+no children.
+'''
+
 
 def create_node(tree, val, left=None, right=None):
     tree[val] = (left, right)
@@ -62,6 +68,12 @@ def create_node(tree, val, left=None, right=None):
 
 
 def create_binary_tree(arr):
+    '''
+    Creates a binary tree as a dictionary in this format:
+    {
+        <node>: (<left>, <right>)
+    }
+    '''
     arr_len = len(arr)
     tree = {}
     for idx in range(0, arr_len):
