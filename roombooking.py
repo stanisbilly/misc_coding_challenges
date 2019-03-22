@@ -9,21 +9,26 @@ Explanation: Since, we have 2 events happening concurrently, customer 1 is
 checking in at 2 and checking out at 3 while another customer is checking in 
 at 1 and checking out at 3. So we will need at least 2 rooms to accomodate 
 both of these customers.
+
+
+Assumptions:
+- You can't check in and out within the same hour.
+- (1,2) and (2,3) are not considered overlapping.
 '''
 
 from collections import deque
 
 def find_max_rooms(schedules):
     '''
-    Steps + complexity (time = O(n^2), space = O(n+2k)):
+    Steps + complexity (time = O(cn), space = O(n+2k)):
     1. create a "counter" array of size 24 for the 24 hours and fill with 0
         space = 24 (k)
     2. for each schedule, expand into array of hours and increase
         the counter for the respective hour index
-        time = n^2
+        time = cn, where c<=24
         space = n*k (at most array of size 24 for each schedule)
     3. return the max of the counter array
-        time = nlogn
+        time = n
     '''
     hour_counts = [0] * 24  # init array of size 24 with all 0s    
     for s in schedules:
@@ -106,7 +111,8 @@ def run_tests(func):
         ([(1,9), (4,23)], 2),
         ([(1,2), (1,3), (1, 4), (3,5)], 3),
         ([(1,2), (1,3), (1,4), (1,5), (1,6)], 5),
-        ([(1,2), (1,3), (1,4), (1,5), (1,6), (2,4)], 5)
+        ([(1,2), (1,3), (1,4), (1,5), (1,6), (2,4)], 5),
+        ([(1,5), (1,3), (2,6), (8,10), (11,12), (12,14), (12,16), (12,19)], 3)
     ]
 
     for t in tests:
