@@ -3,7 +3,7 @@ import unittest
 from treebdfs import dfs, traverse_iter, create_binary_tree, TRAVERSE_MODE
 
 '''
-python -m unittest treebdfs_tests
+python -m unittest tests.treebdfs_tests -v
 '''
 
 class TestTraversal(unittest.TestCase):
